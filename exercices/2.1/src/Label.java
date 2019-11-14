@@ -1,0 +1,7 @@
+/**
+ * Label
+ */
+public interface Label {
+
+    
+}

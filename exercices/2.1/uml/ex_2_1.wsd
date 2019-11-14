@@ -1,0 +1,58 @@
+@startuml ex_2_1
+
+class App
+abstract class WindowFactory <<abstract>>{
+    +{static} WindowFactory getFactory(String type)
+    +{abstract} Button createButton()
+    +{abstract} Edit createEdit()
+    +{abstract} Label createLabel()
+}
+
+interface Button
+interface Edit
+interface Label
+
+class SwingFactory {
+    + SwingButton createButton()
+    + SwingEdit createEdit()
+    + SwingLabel createLabel()
+}
+
+class SwtFactory {
+    + SwtButton createButton()
+    + SwtEdit createEdit()
+    + SwtLabel createLabel()
+}
+
+class SwingButton
+class SwingEdit
+class SwingLabel
+class SwtButton
+class SwtEdit
+class SwtLabel
+
+
+Button <|.. SwingButton
+Button <|.. SwtButton
+Edit <|.. SwingEdit
+Edit <|.. SwtEdit
+Label <|.. SwingLabel
+Label <|.. SwtLabel
+
+WindowFactory <|-- SwtFactory
+WindowFactory <|-- SwingFactory
+
+App ..> WindowFactory : use
+App ..> Button : use
+App ..> Edit : use
+App ..> Label : use
+
+SwingFactory ..> SwingButton
+SwingFactory ..> SwingEdit
+SwingFactory ..> SwingLabel
+
+SwtFactory ..> SwtButton
+SwtFactory ..> SwtEdit
+SwtFactory ..> SwtLabel
+
+@enduml

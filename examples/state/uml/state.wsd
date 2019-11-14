@@ -1,0 +1,35 @@
+@startuml state
+
+interface InterfaceState {
+    + void handleA(StateContext c)
+    + void handleB(StateContext c)
+}
+
+class StateOne {
+    -{static} StateOne instance
+    - StateOne()
+    +{static} StateOne instance()
+    + void handleA(StateContext c)
+    + void handleB(StateContext c)
+}
+
+class StateTwo {
+     -{static} StateTwo instance
+    - StateTwo()
+    +{static} StateTwo instance()
+    + void handleA(StateContext c)
+    + void handleB(StateContext c)
+}
+
+class StateContext {
+    - InterfaceState currentState
+    + void setState(InterfaceState in)
+    + void handleA()
+    + void handleB()
+}
+
+InterfaceState <|.. StateOne
+InterfaceState <|.. StateTwo
+StateContext o- InterfaceState
+
+@enduml

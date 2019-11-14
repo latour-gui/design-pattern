@@ -1,0 +1,68 @@
+@startuml abstract_factory
+    abstract class AbstractFactory <<abstract>> {
+        +{static} AbstractFactory getFactory(String number)
+        +{abstract} AbstractProductA createProductA()
+        +{abstract} AbstractProductB createProductB()
+    }
+
+    abstract class AbstractProductA <<abstract>> {
+        - String param
+        + String get_param()
+        + void set_param()
+        +{abstract} void action()
+    }
+
+    abstract class AbstractProductB <<abstract>>{
+        - String thing
+        + String get_thing()
+        + void set_thing()
+        +{abstract} void other_action()
+    }
+
+    class FactoryOne {
+        + ProductOneA createProductA()
+        + ProductOneB createProductB()
+    }
+
+    class FactoryTwo {
+        + ProductTwoA createProductA()
+        + ProductTwoB createProductB()
+    }
+
+    class ProductOneA {
+        + void action()
+    }
+
+    class ProductOneB {
+        + void other_action()
+    }
+
+    class ProductTwoA {
+        + void action()
+    }
+
+    class ProductTwoB {
+        + void other_action()
+    }
+
+    class App
+
+    App ..> AbstractFactory : use
+    App .> AbstractProductA : use
+    App .> AbstractProductB : use
+
+    AbstractFactory <|-- FactoryOne
+    AbstractFactory <|-- FactoryTwo
+
+    AbstractProductA <|-- ProductOneA
+    AbstractProductA <|-- ProductTwoA
+
+    AbstractProductB <|-- ProductOneB
+    AbstractProductB <|-- ProductTwoB
+
+    FactoryOne ..> ProductOneA : create
+    FactoryOne ..> ProductOneB : create
+    FactoryTwo ..> ProductTwoA : create
+    FactoryTwo ..> ProductTwoB : create
+
+@enduml

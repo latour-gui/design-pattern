@@ -1,0 +1,6 @@
+/**
+ * Edit
+ */
+public interface Edit {
+
+}
