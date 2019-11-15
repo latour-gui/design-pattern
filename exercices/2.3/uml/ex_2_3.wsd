@@ -1,0 +1,56 @@
+@startuml ex_2_3
+
+class Socket {
+    - TcpState current
+    + Socket()
+    + void setState(TcpState state)
+    + void close()
+    + void connect()
+    + void read()
+    + void write()
+}
+
+abstract class TcpState <<abstract>> {
+    + void close(Socket s)
+    + void connect(Socket s)
+    + void read(Socket s)
+    + void write(Socket s)
+}
+
+class TcpClosed {
+    -{static} TcpClosed instance
+    - TcpClosed()
+    +{static} TcpClosed instance()
+    + void close(Socket s)
+    + void connect(Socket s)
+    + void read(Socket s)
+    + void write(Socket s)
+}
+
+class TcpError {
+    -{static} TcpError instance
+    - TcpError()
+    +{static} TcpError instance()
+    + void close(Socket s)
+    + void connect(Socket s)
+    + void read(Socket s)
+    + void write(Socket s)
+}
+
+class TcpListening {
+    -{static} TcpListening instance
+    - TcpListening()
+    +{static} TcpListening instance()
+    + void close(Socket s)
+    + void connect(Socket s)
+    + void read(Socket s)
+    + void write(Socket s)
+}
+
+TcpState <|-- TcpClosed
+TcpState <|-- TcpError
+TcpState <|-- TcpListening
+
+Socket o- TcpState
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml tcp
+state Closed
+state Listening
+state Error
+
+[*] -> Closed : new Socket()
+
+Closed --> [*] : garb. collect.
+Closed -> Listening : connect()
+
+Listening -> Closed : close()
+Listening --> Listening : write()
+Listening -> Listening : read()
+Listening --> Error : connect()
+
+Error -> Closed : close()
+@enduml

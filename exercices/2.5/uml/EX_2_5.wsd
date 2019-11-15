@@ -1,0 +1,7 @@
+@startuml ex_2_5
+class Session {
+    -{static} Hashmap<String,Session> instances
+    - Session(String ip)
+    +{static} Session instance(String ip)
+}
+@enduml

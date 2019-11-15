@@ -1,0 +1,12 @@
+@startuml ex_2_7
+class TypeA
+class TypeB
+class TypeC
+
+Class ContextualSingleton{
+    -{static} HashMap<String, ContextualSingleton> instances
+    - ContextualSingleton(Object o)
+    +{static} ContextualSingleton instance(Object o)
+}
+
+@enduml

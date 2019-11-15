@@ -1,0 +1,7 @@
+/**
+ * TypeB
+ */
+public class TypeB {
+
+    
+}

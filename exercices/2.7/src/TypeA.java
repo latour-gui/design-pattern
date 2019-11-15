@@ -1,0 +1,7 @@
+/**
+ * TypeA
+ */
+public class TypeA {
+
+    
+}

@@ -1,0 +1,6 @@
+/**
+ * TypeC
+ */
+public class TypeC {
+
+}
