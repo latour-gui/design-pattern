@@ -1,0 +1,74 @@
+@startuml ex_2_8_alt
+    class Client
+    class Facture
+    class Produit
+
+
+    class ClientJPA
+    class ClientHibernate
+    class ClientJDBC
+
+    class FactureJPA
+    class FactureHibernate
+    class FactureJDBC
+
+    class ProduitJPA
+    class ProduitHibernate
+    class ProduitJDBC
+
+    abstract class FrameworkFactory <<abstract>> {
+        +{static} FrameworkFactory getFactory(String type)
+        + Client createClient()
+        + Facture createFacture()
+        + Produit createProduit()
+    }
+
+    class JPA {
+        + ClientJPA createClient()
+        + FactureJPA createFacture()
+        + ProduitJPA createProduit()
+    }
+
+    class Hibernate {
+        + ClientHibernate createClient()
+        + FactureHibernate createFacture()
+        + ProduitHibernate createProduit()
+    }
+
+    class JDBC {
+        + ClientJDBC createClient()
+        + FactureJDBC createFacture()
+        + ProduitJDBC createProduit()
+    }
+
+    Client <|-- ClientJPA
+    Client <|-- ClientHibernate
+    Client <|-- ClientJDBC
+    Facture <|-- FactureJPA
+    Facture <|-- FactureHibernate
+    Facture <|-- FactureJDBC
+    Produit <|-- ProduitJPA
+    Produit <|-- ProduitHibernate
+    Produit <|-- ProduitJDBC
+
+    FrameworkFactory <|.. JDBC
+    FrameworkFactory <|.. JPA
+    FrameworkFactory <|.. Hibernate
+    
+    JDBC ..> ClientJDBC : create
+    JDBC ..> FactureJDBC : create
+    JDBC ..> ProduitJDBC : create
+
+    JPA ..> ClientJPA : create
+    JPA ..> FactureJPA : create
+    JPA ..> ProduitJPA : create
+    
+    Hibernate ..> ClientHibernate : create
+    Hibernate ..> FactureHibernate : create
+    Hibernate ..> ProduitHibernate : create
+
+
+
+    
+
+@enduml

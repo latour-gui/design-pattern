@@ -1,0 +1,86 @@
+@startuml ex_2_8
+    class Client
+    class Facture
+    class Produit
+
+    class JPA
+    class Hibernate
+    class JDBC
+
+    class ClientJPA
+    class ClientHibernate
+    class ClientJDBC
+
+    class FactureJPA
+    class FactureHibernate
+    class FactureJDBC
+
+    class ProduitJPA
+    class ProduitHibernate
+    class ProduitJDBC
+
+    interface FrameworkFactory <<interface>> {
+        + Client createClient()
+        + Facture createFacture()
+        + Produit createProduit()
+    }
+
+    class ConcreteFactory <<static>> {
+        +{static} FrameworkFactory getFactory(String type)
+    }
+
+    class JPAFactory {
+        + ClientJPA createClient()
+        + FactureJPA createFacture()
+        + ProduitJPA createProduit()
+    }
+
+    class HibernateFactory {
+        + ClientHibernate createClient()
+        + FactureHibernate createFacture()
+        + ProduitHibernate createProduit()
+    }
+
+    class JDBCFactory {
+        + ClientJDBC createClient()
+        + FactureJDBC createFacture()
+        + ProduitJDBC createProduit()
+    }
+
+    Client <|-- ClientJPA
+    Client <|-- ClientHibernate
+    Client <|-- ClientJDBC
+    Facture <|-- FactureJPA
+    Facture <|-- FactureHibernate
+    Facture <|-- FactureJDBC
+    Produit <|-- ProduitJPA
+    Produit <|-- ProduitHibernate
+    Produit <|-- ProduitJDBC
+
+    ConcreteFactory .> FrameworkFactory : use
+
+    JDBC <|-- JDBCFactory
+    JPA <|-- JPAFactory
+    Hibernate <|-- HibernateFactory
+
+    FrameworkFactory <|.. JDBCFactory
+    FrameworkFactory <|.. JPAFactory
+    FrameworkFactory <|.. HibernateFactory
+    
+    JDBCFactory ..> ClientJDBC : create
+    JDBCFactory ..> FactureJDBC : create
+    JDBCFactory ..> ProduitJDBC : create
+
+    JPAFactory ..> ClientJPA : create
+    JPAFactory ..> FactureJPA : create
+    JPAFactory ..> ProduitJPA : create
+    
+    HibernateFactory ..> ClientHibernate : create
+    HibernateFactory ..> FactureHibernate : create
+    HibernateFactory ..> ProduitHibernate : create
+
+
+
+    
+
+@enduml
