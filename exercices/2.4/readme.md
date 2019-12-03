@@ -7,3 +7,9 @@ Proposez une implémentation du design pattern **Configuration** pour permettre 
 - Physique
 - Données
 - Réseau
+
+--------------
+
+S'il faut lier tous les composants ensemble, il faut utiliser le dp configuration.
+
+Si chaque composant sont indépendant, alors il faut utiliser le dp mediator.
